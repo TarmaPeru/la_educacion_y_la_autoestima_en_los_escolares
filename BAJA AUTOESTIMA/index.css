@@ -1,0 +1,872 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+  background:#f4f7fb;
+  color:#222222;
+  scroll-behavior:smooth;
+}
+
+/* HEADER */
+
+header{
+  width:100%;
+  background:rgba(13, 22, 138, 0.8);
+  position:absolute;
+  top:0;
+  z-index:1000;
+}
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 50px;
+}
+
+.logo{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  color:white;
+  font-size:24px;
+  font-weight:bold;
+}
+
+.logo img{
+  width:45px;
+}
+
+.menu{
+  list-style:none;
+  display:flex;
+  gap:20px;
+}
+
+.menu li{
+  position:relative;
+}
+
+.menu a{
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+.menu li::after{
+  content:'';
+  position:absolute;
+  left:0;
+  top:100%;
+  width:100%;
+  height:15px;
+}
+
+.menu a:hover{
+  color:#ffd900;
+}
+
+/* SUBMENU */
+
+.submenu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  margin-top:0;
+  background:white;
+  min-width:180px;
+  border-radius:10px;
+  overflow:hidden;
+  z-index:9999;
+}
+
+.submenu a{
+  display:block;
+  padding:12px;
+  color:#222;
+}
+
+.submenu a:hover{
+  background:#ffe600;
+  color:rgb(58, 58, 58);
+}
+
+.menu li:hover .submenu{
+  display:block;
+}
+
+/* BARRA BUSCADOR */
+.search-container {
+  position: absolute;
+  top: 120px; /* Se queda abajo del menú, en su altura original */
+  left: 50%; /* Lo mueve al centro exacto de la pantalla */
+  transform: translateX(-50%); /* Ajuste técnico obligatorio para que quede perfectamente centrado */
+  width: auto; /* Mantiene su tamaño compacto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0;
+  z-index: 9999;
+}
+
+/* RESPONSIVE: AJUSTE EXCLUSIVO PARA CELULARES */
+@media screen and (max-width: 600px) {
+  .search-container {
+    top: 140px; /* <--- Esto lo baja más en celulares para que no pise el menú */
+  }
+}
+
+.search-container input {
+  width: 250px; /* Tamaño reducido (puedes subirlo a 300px si lo quieres un poquito más largo) */
+  max-width: 90%;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 40px;
+  outline: none;
+  font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.search-container button {
+  width: 38px; /* Lupa compacta */
+  height: 38px;
+  border: none;
+  border-radius: 50%;
+  background: #00b4ff;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-container button:hover {
+  background: #008fcc;
+  transform: scale(1.05);
+}
+
+/* HERO */
+
+.hero{
+  height:100vh;
+
+  background:
+  linear-gradient(rgba(0,0,0,0.5),
+  rgba(0,0,0,0.5)),
+
+  url('https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1600&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+}
+
+.hero-content h1{
+  font-size:55px;
+  margin-bottom:20px;
+}
+
+.hero-content p{
+  font-size:20px;
+  max-width:700px;
+  margin:auto;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:25px;
+  padding:12px 25px;
+  background:#00b4ff;
+  color:white;
+  text-decoration:none;
+  border-radius:30px;
+}
+
+.btn:hover{
+  background:#008fcc;
+}
+
+/* GENERAL */
+
+section{
+  padding:100px 50px;
+}
+
+/* TÍTULOS GENERALES */
+
+h2{
+
+  text-align:center;
+
+  margin-bottom:50px;
+
+  font-size:40px;
+
+  color:#003366;
+
+  position:relative;
+
+  font-weight:800;
+
+  letter-spacing:1px;
+
+}
+
+/* LÍNEA DECORATIVA */
+
+h2::after{
+
+  content:'';
+
+  width:120px;
+  height:5px;
+
+  background:#00b4ff;
+
+  display:block;
+
+  margin:18px auto 0;
+
+  border-radius:10px;
+
+}
+
+.texto-slider{
+  text-align:center;
+  max-width:900px;
+  margin:auto;
+  margin-bottom:40px;
+  font-size:18px;
+  line-height:1.8;
+}
+
+/* SLIDER */
+
+.slider{
+  width:100%;
+  max-width:900px;
+  margin:auto;
+  overflow:hidden;
+  border-radius:20px;
+}
+
+.slides{
+  display:flex;
+  width:300%;
+  animation:slide 12s infinite;
+}
+
+.slides img{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+}
+
+@keyframes slide{
+
+  0%{margin-left:0;}
+  30%{margin-left:0;}
+
+  35%{margin-left:-100%;}
+  65%{margin-left:-100%;}
+
+  70%{margin-left:-200%;}
+  100%{margin-left:-200%;}
+
+}
+
+/* SECCIONES MODERNAS */
+
+#problematica,
+#internacional,
+#nacional,
+#local{
+
+  padding:100px 30px;
+
+}
+
+/* CAJAS */
+
+.contenido-horizontal,
+.problematica-general{
+
+    display:flex;
+  align-items:center;
+  gap:60px;
+
+  padding:60px;
+
+  border-radius:35px;
+
+  background:
+  linear-gradient(
+  135deg,
+  rgba(255,255,255,0.95),
+  rgba(240,245,255,0.95)
+  );
+
+  backdrop-filter:blur(10px);
+
+  box-shadow:
+  0 15px 40px rgba(0,0,0,0.08);
+
+  position:relative;
+
+  overflow:hidden;
+
+  transition:0.4s;
+
+}
+
+/* EFECTO HOVER */
+
+.contenido-horizontal:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:
+  0 20px 45px rgba(0,0,0,0.12);
+
+}
+
+/* DETALLE DECORATIVO */
+
+.contenido-horizontal::before{
+
+  content:'';
+
+  position:absolute;
+
+  top:0;
+  left:0;
+
+  width:10px;
+  height:100%;
+
+  background:
+  linear-gradient(
+  #00b4ff,
+  #003366
+  );
+
+}
+
+/* IMAGEN */
+
+.contenido-horizontal img{
+
+  width:380px;
+
+  border-radius:30px;
+
+  box-shadow:
+  0 10px 25px rgba(0,0,0,0.15);
+
+  transition:0.4s;
+
+}
+
+.contenido-horizontal img:hover{
+
+  transform:scale(1.03);
+
+}
+
+/* TEXTO */
+
+.texto{
+
+  flex:1;
+
+}
+
+.texto p{
+
+  font-size:20px;
+
+  line-height:2;
+
+  color:#444;
+
+  text-align:justify;
+
+}
+
+.contenido-horizontal:hover,
+.problematica-general:hover{
+
+  transform:translateY(-5px);
+
+}
+
+/* IMÁGENES */
+
+.contenido-horizontal img{
+
+  width:350px;
+  max-height:420px;
+
+  object-fit:contain;
+
+  border-radius:25px;
+
+  background:#f4f4f4;
+
+  padding:10px;
+
+}
+
+/* TEXOS */
+
+.texto{
+
+  flex:1;
+
+}
+
+.texto p{
+
+  font-size:14px;
+
+  line-height:2;
+
+  color:#444;
+
+  text-align:justify;
+
+}
+
+/* GALERÍA */
+
+.galeria{
+
+  display:grid;
+
+  grid-template-columns:repeat(2,1fr);
+
+  gap:15px;
+
+}
+
+.galeria img{
+
+  width:220px;
+  height:180px;
+
+  object-fit:contain;
+
+  background:#f4f4f4;
+
+  padding:8px;
+
+  border-radius:20px;
+
+  transition:0.3s;
+
+}
+
+.galeria img:hover{
+
+  transform:scale(1.03);
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .contenido-horizontal,
+  .problematica-general{
+
+    flex-direction:column;
+
+    text-align:center;
+
+  }
+
+  .contenido-horizontal img{
+
+    width:100%;
+
+    max-width:400px;
+
+  }
+
+  .galeria{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+/* PREGUNTAS MODERNAS */
+
+#preguntas{
+  padding:100px 20px;
+}
+
+.faq-container{
+  max-width:900px;
+  margin:auto;
+
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+.faq-item{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
+
+  transition:0.3s;
+}
+
+.faq-item:hover{
+  transform:translateY(-3px);
+}
+
+.faq-btn{
+  width:100%;
+
+  background:#003366;
+  color:white;
+
+  border:none;
+
+  padding:25px 30px;
+
+  font-size:20px;
+  font-weight:bold;
+
+  cursor:pointer;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  text-align:left;
+}
+
+/* ICONO + */
+
+.faq-btn::after{
+  content:'+';
+  font-size:30px;
+  transition:0.3s;
+}
+
+.faq-item.active .faq-btn::after{
+  transform:rotate(45deg);
+}
+
+/* CONTENIDO */
+
+.faq-content{
+  max-height:0;
+  overflow:hidden;
+
+  transition:max-height 0.5s ease;
+
+  background:white;
+}
+
+.faq-content p{
+  padding:30px;
+
+  font-size:17px;
+  line-height:1.8;
+
+  color:#333;
+}
+
+/* ABIERTO */
+
+.faq-item.active .faq-content{
+  max-height:400px;
+}
+
+/* SLIDER AUTORES */
+
+.slider-autores-container{
+  position:relative;
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+}
+
+.slider-autores{
+  width:80%;
+  overflow:hidden;
+}
+
+.autores-track{
+  display:flex;
+  transition:transform 0.5s ease;
+  gap:25px;
+}
+
+.autor-card{
+  min-width:31%;
+  background:white;
+  border-radius:25px;
+  padding:30px;
+  text-align:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.autor-card img{
+  width:180px;
+  height:180px;
+  border-radius:50%;
+  object-fit:cover;
+  margin-bottom:20px;
+}
+
+.autor-card p{
+  font-size:13px;
+  line-height:1.5;
+  color:#222;
+  font-weight:600;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+}
+
+/* BOTONES */
+
+.slider-btn{
+  width:55px;
+  height:55px;
+  border:none;
+  border-radius:50%;
+  background:#003366;
+  color:white;
+  font-size:28px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.slider-btn:hover{
+  background:#00b4ff;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .autor-card{
+    min-width:48%;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .autor-card{
+    min-width:100%;
+  }
+
+}
+
+/* BIBLIOGRAFÍA */
+
+.bibliografia-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+
+.biblio-card{
+  background:white;
+  border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  transition:0.3s;
+}
+
+.biblio-card:hover{
+  transform:translateY(-5px);
+}
+
+.biblio-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.biblio-info{
+  padding:25px;
+}
+
+.biblio-info h3{
+  margin-bottom:15px;
+  color:#003366;
+}
+
+.biblio-info p{
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+.biblio-info a{
+  display:inline-block;
+  padding:10px 20px;
+  background:#003366;
+  color:white;
+  text-decoration:none;
+  border-radius:10px;
+  transition:0.3s;
+}
+
+.biblio-info a:hover{
+  background:#00b4ff;
+}
+
+/* BOTÓN FLOTANTE WHATSAPP */
+
+.whatsapp-float{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+
+  background:#25D366;
+  color:white;
+
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:15px 20px;
+
+  border-radius:50px;
+
+  text-decoration:none;
+
+  box-shadow:0 5px 15px rgba(0,0,0,0.3);
+
+  z-index:9999;
+
+  transition:0.3s;
+}
+
+.whatsapp-float:hover{
+  transform:scale(1.05);
+  background:#1ebe5d;
+}
+
+.whatsapp-float img{
+  width:35px;
+  height:35px;
+}
+
+.whatsapp-float span{
+  font-size:16px;
+  font-weight:bold;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+  .bibliografia-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+/* FOOTER */
+
+/* ESTILOS PARA EL PIE DE PÁGINA */
+footer {
+  background-color: #071274; /* Un fondo oscuro para el footer */
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.footer-links {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Separa los dos enlaces entre sí */
+}
+
+.footer-links a {
+  color: #ffffff; /* Azul llamativo como tu botón de buscar */
+  text-decoration: none; /* Quita el subrayado feo por defecto */
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #ffd900; /* Cambia a amarillo al pasar el mouse, igual que tu menú */
+  text-decoration: underline; /* Aparece el subrayado solo al pasar el mouse */
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1100px){
+
+  .autores-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+
+}
+
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  .menu{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero-content h1{
+    font-size:35px;
+  }
+
+  section{
+    padding:80px 20px;
+  }
+
+  .slides img{
+    height:300px;
+  }
+
+  .contenido-horizontal,
+  .problematica-general{
+    flex-direction:column;
+  }
+
+  .galeria{
+    grid-template-columns:1fr;
+  }
+
+  .autores-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
